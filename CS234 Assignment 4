@@ -1,0 +1,125 @@
+## 
+## *************************************************** 
+## Adam Shirwa (20941437) 
+## CS234 Fall 2024 
+## Assignment 4
+## *************************************************** ##
+
+
+
+class Node:
+    """
+    A class representing a node in a doubly linked list for the LRU Cache.
+    """
+
+    def __init__(self, key: int, val: int):
+        """
+        Initialize a node with a key and a value.
+
+        Args:
+            key (int): The key associated with the node.
+            val (int): The value associated with the key.
+        """
+        self.key = key
+        self.val = val
+        self.prev = None  # Previous node in the linked list
+        self.next = None  # Next node in the linked list
+
+class LRUCache:
+    """
+    A class representing an LRU Cache to store a limited number of key-value pairs.
+    """
+
+    def __init__(self, capacity: int):
+        """
+        Initialize the LRU Cache with a specified capacity.
+
+        Args:
+            capacity (int): The maximum number of items the cache can hold.
+        """
+        self.capacity = capacity
+        self.cache = {}  # Maps keys to their corresponding node in the linked list
+
+        # Create dummy nodes to represent the boundaries of the doubly linked list
+        self.left = Node(0, 0)  # LRU sentinel
+        self.right = Node(0, 0)  # MRU sentinel
+        self.left.next = self.right
+        self.right.prev = self.left
+
+    def get(self, key: int) -> int:
+        """
+        Retrieve the value associated with the key from the cache.
+
+        Args:
+            key (int): The key to look up in the cache.
+
+        Returns:
+            int: The value associated with the key if it exists; otherwise, -1.
+        """
+        if key in self.cache.keys():
+            retval = self.cache[key]
+
+            # promote this value to front
+            parent = self.left
+            current = self.left.next
+            while current.key != key:
+                parent = current
+                current = current.next
+
+            parent.next = current.next
+            current.next.prev = parent
+
+            current.next = None
+            current.prev = None
+
+            first = self.left.next
+
+            self.left.next = current
+            current.prev = self.left
+            current.next = first
+            first.prev = current
+
+            # return the value
+            return retval
+        
+        return -1
+
+
+    def put(self, key: int, value: int) -> None:
+        """
+        Insert or update the key-value pair in the cache.
+
+        Args:
+            key (int): The key to insert or update.
+            value (int): The value associated with the key.
+        """
+        if key in self.cache.keys():
+            self.get(key)
+
+        self.cache[key] = value
+
+        current = Node(key, value)
+
+        first = self.left.next
+
+        self.left.next = current
+        current.prev = self.left
+
+        current.next = first
+        first.prev = current
+
+        if len(self.cache.keys()) == self.capacity + 1:
+            toRemove = self.right.prev
+            secondlast = toRemove.prev
+            secondlast.next = self.right
+            self.right.prev = secondlast
+            del self.cache[toRemove.key]
+
+def printLL(node):
+    val = []
+    while node:
+        val += [(node.key, node.val)]
+        node = node.next
+    print(val)
+
+        
