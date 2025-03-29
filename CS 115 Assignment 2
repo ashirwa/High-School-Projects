@@ -1,0 +1,29 @@
+(define (host-play-date? home friend1 friend2 friend3 max-difference)
+
+  (and  (or (and (even? friend1) (even? friend2) (even? friend3)) (and (odd? friend1)(odd? friend2)(odd? friend3))) (<= (abs (- home friend1)) max-difference)
+  (<= (abs (- home friend2)) max-difference)
+  (<= (abs (- home friend3)) max-difference)
+  ))
+
+(host-play-date? 100 101 102 99 10)
+
+#**********************************************#
+
+(define (speeding-fine speed limit)
+  (cond
+    [(< speed limit) 0]
+     
+
+    [(and (> (- speed limit) 0) (<= (- speed limit) 9)) (* 0 (- speed limit))]
+    [(and (>= (- speed limit) 10) (<= (- speed limit) 19)) (* 3 (- speed limit))]
+    [(and (>= (- speed limit) 20) (<= (- speed limit) 29)) (* 4.5 (- speed limit))]
+    [(and (>= (- speed limit) 30) (<= (- speed limit) 39)) (* 7 (- speed limit))]
+    [(and (>= (- speed limit) 40) (<= (- speed limit) 49)) (* 9.75 (- speed limit))]
+    [(or (and (> (- speed limit) 40)(= limit 80)) (>(- speed limit) 50) (>= speed 150)) (+ 10000)]
+    ))
+
+  (speeding-fine 139 110)
+
+
+#**********************************************************#
+
