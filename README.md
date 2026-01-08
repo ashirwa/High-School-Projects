@@ -1,17 +1,13 @@
 Here is a short description of all of the projects in this repository. 
 
-Speeding Fine Project
+Grade Calculator (Java, BBEdit)
+A Java application that computes weighted final grades based on four assessment components and their respective percentages. The project emphasizes control flow, input validation, and exception handling to ensure accurate and reliable calculations.
 
-A small program designed to calculate speeding fines based on user input and predefined rules. This project focused on conditional logic, input validation, and applying real world constraints to produce accurate outputs.
+Speed Limit Fine Calculator and Play-Date Distance Calculator (Racket, DrRacket)
+Two small Racket programs designed to perform rule based and numerical calculations. These projects focus on conditional logic, variable handling, and applying mathematical reasoning to compute correct outputs.
 
-Right Angle Triangle Project
+Right-Angle Triangle Test and ISBN Calculator (Python, Visual Studio Code)
+Python programs that evaluate numerical inputs to determine geometric validity and verify ISBN numbers. These projects demonstrate multi value computation, logical checks, and structured problem solving.
 
-A Python program that determines whether three given values can form a right angle triangle. This project reinforced mathematical logic, condition checking, and structured problem solving using geometric principles.
-
-LRU Cache Project
-
-An implementation of a Least Recently Used (LRU) cache with a fixed capacity, designed to manage key value pairs efficiently. This project emphasized data structures, cache eviction strategies, and optimizing access patterns in Python.
-
-Grade Calculator Project
-
-A Java based application that calculates weighted grades using multiple assessment components and percentage inputs. This project focused on control flow, error handling, and building reliable calculations with user friendly input validation.
+LRU Cache (Python, Visual Studio Code)
+An implementation of a Least Recently Used cache with a fixed capacity of three key value pairs. This project focuses on data structures, cache eviction strategies, and efficient management of limited resources.
